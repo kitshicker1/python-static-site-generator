@@ -1,5 +1,3 @@
-from importlib.resources import path
-from msilib.schema import Directory
 from pathlib import Path
  
 
