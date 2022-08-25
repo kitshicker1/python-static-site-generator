@@ -1,5 +1,6 @@
 from email import parser
 from pathlib import Path
+import sys
  
 
 
@@ -23,7 +24,7 @@ class Site :
         if parser is not None:
             parser.parse(path, self.source, self.dest)
         else:
-            print("Not Implemented")
+            self.error("No parser for the {} extension, file skipped!".format(path.suffix))
         
 
     def build(self):
@@ -33,6 +34,10 @@ class Site :
                 self.create_dir(path)
             elif path.is_file:
                 self.run_parser(path)
+    
+    @staticmethod
+    def error(message):
+        sys.stderr.write("\x1b[1;31m{}\n".format(message))
 
 
     
